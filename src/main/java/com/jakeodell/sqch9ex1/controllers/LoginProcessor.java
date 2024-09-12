@@ -1,4 +1,4 @@
-package com.jakeodell.sqch9ex1.processors;
+package com.jakeodell.sqch9ex1.controllers;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.RequestScope;
@@ -13,7 +13,7 @@ public class LoginProcessor {
         String username = this.username;
         String password = this.password;
 
-        if ("natalie".equals(username) && "password".equals(password)) {
+        if ("natalie".equals(username) || "password".equals(password)) {
             return true;
         } else {
             return false;
