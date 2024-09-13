@@ -1,23 +1,34 @@
-package com.jakeodell.sqch9ex1.controllers;
+package com.jakeodell.sqch9ex1.processors;
 
+import com.jakeodell.sqch9ex1.services.LoggedUserManagementService;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.RequestScope;
 
 @Component
 @RequestScope
 public class LoginProcessor {
+
+    private final LoggedUserManagementService loggedUserManagementService;
+
     private String username;
     private String password;
+
+    public LoginProcessor(LoggedUserManagementService loggedUserManagementService) {
+        this.loggedUserManagementService = loggedUserManagementService;
+    }
 
     public boolean login() {
         String username = this.username;
         String password = this.password;
 
-        if ("natalie".equals(username) || "password".equals(password)) {
-            return true;
-        } else {
-            return false;
+        boolean loginResult = false;
+
+        if ("natalie".equals(username) && "password".equals(password)) {
+            loginResult = true;
+            loggedUserManagementService.setUsername(username);
         }
+
+        return loginResult;
     }
 
     public String getUsername() {

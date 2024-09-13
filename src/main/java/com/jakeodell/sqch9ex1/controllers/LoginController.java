@@ -1,5 +1,6 @@
 package com.jakeodell.sqch9ex1.controllers;
 
+import com.jakeodell.sqch9ex1.processors.LoginProcessor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,11 +30,10 @@ public class LoginController {
         boolean loggedIn = loginProcessor.login();
 
         if (loggedIn) {
-            model.addAttribute("message", "You are logged in.");
-        } else {
-            model.addAttribute("message", "Login failed!");
+            return "redirect:/main";
         }
 
+        model.addAttribute("message", "Login failed!");
         return "login.html";
     }
 }
